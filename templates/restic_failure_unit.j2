@@ -10,6 +10,8 @@ LOGS="$(journalctl --no-hostname -o short-iso INVOCATION_ID=${ID} + _SYSTEMD_INV
 
 # send email notification:
 # Note: requires a working mailer on the system!
-echo "$LOGS" | mail -s "Service $UNIT on $(hostname -f) failed!" "$EMAIL"
+echo "$LOGS" | mailx -s "Service $UNIT on $(hostname -f) failed!" "$EMAIL"
+echo "$LOGS" | mailx -s "Service $UNIT on $(hostname -f) failed!" "$EMAIL"
+
 
 exit 0
