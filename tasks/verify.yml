@@ -8,6 +8,15 @@
     update_cache: true
   become: true
 
+- name: Create dir for checksum file
+  ansible.builtin.file:
+    state: 'directory'
+    path: "{{ ansible_env.HOME }}/restic"
+    mode: '0644'
+    owner: '{{ ansible_user }}'
+    group: '{{ ansible_user }}'
+    
+
 - name: Download checksum file and signature
   ansible.builtin.get_url:
     url: "{{ restic_url_checksums }}/{{ item }}"
